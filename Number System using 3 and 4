@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+   // Complete the program
+    int n;
+    cin>>n;
+    int a=n+1;
+    int i=0;
+    int num[100];
+    while(a!=1)
+    {
+        if(a%2==0)
+            num[i++]=3;
+        else
+            num[i++]=4;
+        a/=2;
+    }
+    while(i--)
+    {
+        cout<<num[i];
+    }
+    
+  
+    return 0;
+}
