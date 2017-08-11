@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+#include <iostream>
+ 
+using namespace std;
+
+int main(int argc, char** argv)
+{
+string s1,s2;
+cin>>s1>>s2;
+string s3="";
+int n1=s1.length();
+int n2=s2.length();
+reverse(s2.begin(),s2.end());
+int flag=0;
+for(int i=n1-1,j=0;;j++)
+{
+    if(s1[i]==s2[j])
+    {
+        s3=s3+s1[i];
+        i--;
+        
+    }
+    else if(s1[i]!=s2[j])
+    {
+        i=n1-1;
+        
+        s3.clear();
+        
+    }
+    if(i==0||j==n2-1)
+    {
+        
+        flag=1;
+        goto mahi;
+    }
+}
+mahi:;
+reverse(s3.begin(),s3.end());
+    cout<<s3;
+
+
+return 0;
+
+}
