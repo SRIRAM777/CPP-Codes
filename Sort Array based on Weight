@@ -1,0 +1,108 @@
+/*Sample I/P:5
+             10 12 36 49 54
+         O/P:
+             36 12 49 54 10
+*/
+
+#include<bits/stdc++.h>
+#include <iostream>
+using namespace std;
+
+int iseven(int n2)
+{
+    if(n2%2==0)
+    return 1;
+    else
+    return 0;
+}
+
+int ismulti(int n2)
+{
+    if(n2%4==0&&n2%6==0)
+    return 1;
+    else
+    return 0;
+}
+
+int issqr(int n2)
+{
+    float f=sqrt((double)n2);
+    int n3;
+    n3=f;
+    if(n3==f)
+    return 1;
+    else
+    return 0;
+}
+
+void checkweight(vector<int>&arr,int i,vector<int>&arr1)
+{
+    int sum=0;
+    int n2=arr[i];
+    if(issqr(n2))
+    {
+        sum+=5;
+    }
+    if(ismulti(n2))
+    {
+        sum+=4;
+    }
+    if(iseven(n2))
+    {
+        sum+=3;
+    }
+    arr1.push_back(sum);
+    return;
+}
+ 
+
+
+int main(int argc, char** argv)
+{
+int n;
+cin>>n;
+vector<int>arr;
+for(int i=0;i<n;i++)
+{
+    int n1;
+    cin>>n1;
+    arr.push_back(n1);
+}
+vector<int>arr1;
+for(int i=0;i<n;i++)
+{
+    checkweight(arr,i,arr1);
+}
+
+for(int i=0;i<n;i++)
+{
+    for(int j=0;j<(n-i);j++)
+    {
+        if(arr1[j]<arr1[j+1])
+        {
+            int temp=arr1[j];
+            arr1[j]=arr1[j+1];
+            arr1[j+1]=temp;
+            
+            int temp1=arr[j];
+            arr[j]=arr[j+1];
+            arr[j+1]=temp1;
+        }
+    }
+}
+
+for(int i=0;i<n-1;i++)
+{
+   if(arr1[i]==arr1[i+1]&&arr[i]<arr[i+1])
+   {     
+       int temp2=arr[i];
+       arr[i]=arr[i+1];
+       arr[i+1]=temp2;
+   }
+       
+}
+    
+for(int i=0;i<n;i++)
+cout<<arr[i]<<endl;
+
+}
