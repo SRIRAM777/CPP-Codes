@@ -1,0 +1,125 @@
+/*Input: welcometozohocorporation
+         wmor
+  
+  Output: w e l c o 
+          m e t o z 
+          o h o c o 
+          r p o r a 
+          t i o n  
+          Start 0 0
+          End 3 0*/
+
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    string s;
+    cin>>s;
+    int n=s.length();
+    int a=sqrt(n);
+    int b;
+    if(a*a==n)
+       b=a;
+    else
+        b=a+1;
+    char arr[b][b]={};
+    int k=0;
+    for(int i=0;i<b;i++)
+    {
+        for(int j=0;j<b;j++)
+        { if(k<n)
+        {
+            arr[i][j]=s[k++];
+        }
+        }
+    }
+    for(int i=0;i<b;i++)
+    {
+        for(int j=0;j<b;j++)
+            cout<<arr[i][j]<<" ";
+        cout<<endl;
+    }
+    string s1;
+    cin>>s1;
+    int n1=s1.length();
+   
+    int k1=0,k3=0;
+    
+    for(int i=0;i<b;i++)
+    {
+        int flag2=0;
+        for(int j=0;j<b;j++)
+        {
+            if(arr[i][j]==s1[k1])
+            {
+                int j1=1,k2=1,flag=0;
+                while(((j1+j)<b)&&((k1+k2)<n1))
+                {
+                    if(arr[i][j+j1]==s1[k1+k2])
+                    {
+                        j1++;
+                        k2++;
+                    }
+                    else
+                    {
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag==0)
+                {
+                    cout<<"Start "<<i<<" "<<j<<endl;
+                    cout<<"End "<<i<<" "<<k2-1<<endl;
+                    flag2=1;
+                    break;
+                }
+            }
+        }
+        if(flag2==1)
+            break;
+        
+    }
+    for(int i=0;i<b;i++)
+    {
+        int flag3=0;
+        for(int j=0;j<b;j++)
+        {
+            if(arr[i][j]==s1[k3])
+            {
+                int i1=1,k4=1,flag1=0;
+                while(((i+i1)<b)&&((k3+k4)<n1))
+                {
+                    if(arr[i+i1][j]==s1[k3+k4])
+                    {
+                        i1++;
+                        k4++;
+                    }
+                    else
+                    {
+                        flag1=1;
+                        break;
+                    }
+                }
+                if(flag1==0)
+                {
+                    cout<<"Start "<<i<<" "<<j<<endl;
+                    cout<<"End "<<k4-1<<" "<<j<<endl;
+                    flag3=1;
+                    break;
+                }
+            }
+        }
+        if(flag3==1)
+            break;
+        
+    }
+    
+    return 0;
+}
