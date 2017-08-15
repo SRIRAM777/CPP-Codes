@@ -1,0 +1,46 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int isvowel(char ch)
+{
+    if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u')
+        return 0;   
+        else
+        return 1;
+}
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    string s,s1;
+    cin>>s;
+    
+    int n=s.length();
+    
+    int i=0,j=n-1;
+    while(i<j)
+    {
+        if(isvowel(s[i]))
+        {
+            i++;
+            continue;
+        }
+        if(isvowel(s[j]))
+        {
+            j--;
+            continue;
+        }
+        
+        char c=s[i];
+        s[i]=s[j];
+        s[j]=c;
+        i++;
+        j--;
+    }
+    cout<<s;
+    
+    return 0;
+}
