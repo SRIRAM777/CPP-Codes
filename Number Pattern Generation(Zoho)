@@ -1,0 +1,52 @@
+/* IP: 4
+
+   OP: 4 4 4 4 4 4 4 
+       4 3 3 3 3 3 4 
+       4 3 2 2 2 3 4 
+       4 3 2 1 2 3 4 
+       4 3 2 2 2 3 4 
+       4 3 3 3 3 3 4 
+       4 4 4 4 4 4 4 
+*/
+
+
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int main() {
+     int n;
+    cin>>n;
+    int n1=n;
+    int a=(2*n)-1;
+    int arr[a][a];
+
+    int rs=0,cs=0;
+    int re=a-1,ce=a-1;
+    
+    while(rs<=re&&cs<=ce)
+    {
+        int i=rs,j=cs;
+        for(j=cs;j<=ce;j++)
+            arr[i][j]=n1;
+        for(i=rs+1,j--;i<=re;i++)
+            arr[i][j]=n1;
+        for(j=ce-1,i--;j>=cs;j--)
+            arr[i][j]=n1;
+        for(i=re-1,j++;i>=rs+1;i--)
+            arr[i][j]=n1;
+        
+        rs++;cs++;re--;ce--;n1--;
+    }
+    int mid=(a-1)/2;
+    
+        arr[mid][mid]=1;
+    for(int l=0;l<a;l++)
+    {
+        for(int m=0;m<a;m++)
+            cout<<arr[l][m]<<" ";
+        
+        cout<<endl;
+    }
+    return 0;
+}
