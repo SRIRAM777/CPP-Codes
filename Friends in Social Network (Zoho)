@@ -1,0 +1,67 @@
+/* IP: 3
+       Morgi 2 Mahi Chandran
+       Mahi 3 Harsha Mahesh Shami
+       Sriram 2 Morgi Venkat
+       
+   OP: Chandran Harsha Mahesh Shami Venkat 
+    
+*/
+
+#include<bits/stdc++.h>
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int main() {
+    
+    int n;
+    cin>>n;
+    vector<string>arr;
+    vector<string>arr1;
+    cin>>ws;
+    for(int i=0;i<n;i++)
+    {
+        string s;
+        getline(cin,s);
+        string s1="";
+        int k=0;
+        while(isalpha(s[k]))
+        {
+            s1+=s[k];
+            k++;
+        }
+       
+        arr.push_back(s1);
+        k+=3;
+        string s2="";
+        for(int j=k;j<s.length();)
+        {
+            while(isalpha(s[j]))
+            {
+              s2+=s[j];
+               j++;
+            }
+            arr1.push_back(s2);
+            j++;
+            s2="";
+        }
+    }
+    
+    
+    for(int i=0;i<arr1.size();i++)
+    {
+        int flag=0;
+        for(int j=0;j<arr.size();j++)
+        {
+            if(arr[j]==arr1[i])
+            {
+                flag=1;
+                break;
+            }
+               
+        }
+        if(flag==0)
+            cout<<arr1[i]<<" ";
+    }
+    return 0;
+}
