@@ -1,0 +1,90 @@
+/*   IP:MAN
+        DOT
+        NOD
+        TIM
+     
+     OP:M A N 
+        I * O 
+        T O D 
+        
+     IP:TIGER
+        YACHT
+        RANGE
+        EVERY
+        
+     OP:T I G E R 
+        H * * * A 
+        C * * * N 
+        A * * * G 
+        Y R E V E
+*/
+
+#include<bits/stdc++.h>
+#include <iostream>
+using namespace std;
+int main()
+{
+ string s,s1,s2,s3;
+ cin>>s>>s1>>s2>>s3;
+ int n=s.length();
+ vector<string>arr;
+ char c=s[s.length()-1];
+for(int i=0;i<3;i++)
+{
+    if(c==s1[0])
+    {
+        c=s1[s1.length()-1];
+        arr.push_back(s1);
+    }
+    else if(c==s2[0])
+    {
+        c=s2[s2.length()-1];
+        arr.push_back(s2);
+    }
+    else if(c==s3[0])
+    {
+        c=s3[s3.length()-1];
+        arr.push_back(s3);
+    }
+}
+char ch[n][n];
+for(int i=0;i<n;i++)
+{
+    for(int j=0;j<n;j++)
+    ch[i][j]='*';
+}
+int a=0,b=0,k=0,k1=1,k2=1,k3=1;
+while(b<n)
+{
+    ch[a][b]=s[k++];
+    b++;
+}
+a+=1;b-=1;
+string s4=arr[0];
+while(a<n)
+{
+    ch[a][b]=s4[k1++];
+    a++;
+}
+a-=1;b-=1;
+string s5=arr[1];
+while(b>=0)
+{
+    ch[a][b]=s5[k2++];
+    b--;
+}
+a-=1;b+=1;
+string s6=arr[2];
+while(a>=0)
+{
+    ch[a][b]=s6[k3++];
+    a--;
+}
+for(int i=0;i<n;i++)
+{
+    for(int j=0;j<n;j++)
+    cout<<ch[i][j]<<" ";
+    cout<<endl;
+}
+ 
+}
