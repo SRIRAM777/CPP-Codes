@@ -1,0 +1,106 @@
+/*Example: IP: 5 
+               18 23 100 1200 45
+          
+           OP: 23 18 45 100 1200 //Sorted numbers
+           
+               2 6 6 9 30        //Count value
+           
+           IP: 12 
+               3013 8459 5485 4296 9101 4590 3677 4004 1488 4008 438 2427
+               
+           OP: 3677 2427 3013 5485 8459 9101 438 4008 4296 1488 4004 4590  //Sorted numbers
+               
+               2 4 4 4 4 4 8 16 16 20 24 32                               //Count value
+*/
+
+#include<bits/stdc++.h>
+#include <iostream>
+ 
+using namespace std;
+int fcount(vector<int>&arr,int i)
+{
+    int cnt=0;
+    for(int j=1;j<=sqrt(arr[i]);j++)
+    {
+        if(arr[i]%j==0)
+        {
+            if(arr[i]/j==j)
+            cnt++;
+            else
+            cnt+=2;
+        }
+    }
+    return cnt;
+}
+
+void cntsort(vector<int>&arr,int st,int en,vector<int>&arr2)
+{
+    
+    for(int i=st;i<=en;i++)
+    arr2.push_back(arr[i]);
+    sort(arr2.begin(),arr2.end());
+    int k=0;
+    for(int i=st;i<=en;i++)
+    {
+        arr[i]=arr2[k++];
+    }
+    arr2.clear();
+}
+int main(int argc, char** argv)
+{
+int n;
+cin>>n;
+vector<int>arr;
+for(int i=0;i<n;i++)
+{
+    int n1;
+    cin>>n1;
+    arr.push_back(n1);
+}
+vector<int>arr1;
+
+for(int i=0;i<n;i++)
+{
+    int n2=fcount(arr,i);
+    arr1.push_back(n2);
+}
+
+for(int i=0;i<n-1;i++)
+{
+    for(int j=0;j<n-i-1;j++)
+    {
+        if(arr1[j]>arr1[j+1])
+        {
+            int t=arr1[j];
+            arr1[j]=arr1[j+1];
+            arr1[j+1]=t;
+            int t1=arr[j];
+            arr[j]=arr[j+1];
+            arr[j+1]=t1;
+        }
+    }
+}
+vector<int>arr2;
+for(int i=0;i<n-1;)
+{
+    if(arr1[i]==arr1[i+1])
+    {
+        int st=i;
+        while(arr1[i]==arr1[i+1])
+        i++;
+        int en=i;
+        cntsort(arr,st,en,arr2);
+        
+    }
+    
+    i++;
+}
+
+for(int i=0;i<n;i++)
+cout<<arr[i]<<" ";
+    
+cout<<endl;
+
+for(int i=0;i<n;i++)
+cout<<arr1[i]<<" ";
+}
