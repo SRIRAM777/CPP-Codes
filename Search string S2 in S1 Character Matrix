@@ -1,0 +1,79 @@
+/*
+IP:6 10
+   fiveriskyfifkajiskfifiveriskiveveriskmvejefivernermrfiverrrr
+   fiver
+
+OP:7
+*/
+
+
+#include <iostream>
+ 
+using namespace std;
+
+int main(int argc, char** argv)
+{
+int a,b;
+cin>>a>>b;
+string s,s1,s2="";
+cin>>s>>s1;
+char arr[a][b]={'0'};
+int cnt=0,k=0;
+for(int i=0;i<a;i++)
+{
+    for(int j=0;j<b;j++)
+    {
+        if(k<s.length())
+        {
+            arr[i][j]=s[k];
+            k++;
+        }
+        else if(k==s.length())
+        {
+            k=0;
+            arr[i][j]=s[k];
+            k++;
+        }
+    }
+}
+for(int i=0;i<a;i++)
+{
+    for(int j=0;j<b;j++)
+    {
+        for(int n=0;n+j<b;n++)
+        {
+            s2+=arr[i][n+j];
+            if(s2==s1)
+            {
+                cnt++;
+                s2="";
+                break;
+            }
+        }
+        s2="";
+    }
+}
+s2="";
+for(int i=0;i<b;i++)
+{
+    for(int j=0;j<a;j++)
+    {
+        for(int n=0;n+j<a;n++)
+        {
+            s2+=arr[n+j][i];
+            if(s2==s1)
+            {
+                cnt++;
+                s2="";
+                break;
+            }
+        }
+        s2="";
+    }
+    
+}
+    
+
+cout<<cnt;
+
+}
